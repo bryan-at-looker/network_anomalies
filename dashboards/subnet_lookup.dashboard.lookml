@@ -3,38 +3,31 @@
   layout: newspaper
   preferred_viewer: dashboards-next
   elements:
-  - title: "# Connections"
-    name: "# Connections"
+  - title: First Event Occurred
+    name: First Event Occurred
     model: anomaly_detection
     explore: outlier_data
     type: single_value
-    fields: [outlier_data.count, outlier_data.transaction_time_date]
+    fields: [outlier_data.timestamp_string]
     filters:
-      outlier_data.transaction_time_date: 3 days ago for 3 days
-      outlier_data.count: NOT NULL
-    sorts: [outlier_data.transaction_time_date desc]
+      outlier_data.transaction_time_date: 3 days
+    sorts: [outlier_data.timestamp_string desc]
     limit: 500
-    dynamic_fields: [{table_calculation: change, label: Change, expression: " (${outlier_data.count}\
-          \  - offset(${outlier_data.count}, 1)  ) / offset(${outlier_data.count},\
-          \ 1)", value_format: !!null '', value_format_name: percent_0, _kind_hint: measure,
-        _type_hint: number}]
     custom_color_enabled: true
     show_single_value_title: true
-    show_comparison: true
-    comparison_type: change
+    show_comparison: false
+    comparison_type: value
     comparison_reverse_colors: false
     show_comparison_label: true
     enable_conditional_formatting: false
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
-    single_value_title: Total Connections
-    comparison_label: vs day prior
     series_types: {}
     defaults_version: 1
     listen:
       Subnet: outlier_data.dst_subnet
     row: 0
-    col: 0
+    col: 12
     width: 6
     height: 5
   - title: Traffic Over Time
@@ -85,31 +78,37 @@
     col: 6
     width: 6
     height: 5
-  - title: First Event Occurred
-    name: First Event Occurred
+  - title: "# Connections"
+    name: "# Connections"
     model: anomaly_detection
     explore: outlier_data
     type: single_value
-    fields: [outlier_data.timestamp_string]
+    fields: [outlier_data.count, outlier_data.transaction_time_date]
     filters:
-      outlier_data.transaction_time_date: 3 days
-    sorts: [outlier_data.timestamp_string desc]
+      outlier_data.count: NOT NULL
+    sorts: [outlier_data.transaction_time_date desc]
     limit: 500
+    dynamic_fields: [{table_calculation: change, label: Change, expression: " (${outlier_data.count}\
+          \  - offset(${outlier_data.count}, 1)  ) / offset(${outlier_data.count},\
+          \ 1)", value_format: !!null '', value_format_name: percent_0, _kind_hint: measure,
+        _type_hint: number}]
     custom_color_enabled: true
     show_single_value_title: true
-    show_comparison: false
-    comparison_type: value
+    show_comparison: true
+    comparison_type: change
     comparison_reverse_colors: false
     show_comparison_label: true
     enable_conditional_formatting: false
     conditional_formatting_include_totals: false
     conditional_formatting_include_nulls: false
+    single_value_title: Total Connections
+    comparison_label: vs day prior
     series_types: {}
     defaults_version: 1
     listen:
       Subnet: outlier_data.dst_subnet
     row: 0
-    col: 12
+    col: 0
     width: 6
     height: 5
   - title: Last Event Occurred
@@ -147,7 +146,6 @@
     fields: [outlier_data.transaction_time_time, outlier_data.dst_subnet, outlier_data.source_country,
       outlier_data.subscriber_id, outlier_data.number_of_unique_ips, outlier_data.number_of_unique_ports,
       outlier_data.avg_duration, outlier_data.avg_rx_bytes, outlier_data.avg_tx_bytes]
-    filters: {}
     sorts: [outlier_data.transaction_time_time desc]
     limit: 10
     show_view_names: false
