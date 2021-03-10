@@ -22,15 +22,28 @@ view: netflow_log_raw_data {
   }
 
   dimension: dst_ip {
+    group_label: "Destination"
     label: "Destination IP"
+    group_item_label: "IP"
     type: string
     sql: ${TABLE}.dstIP ;;
   }
 
   dimension: dst_port {
+    group_label: "Destination"
     label: "Destination Port"
+    group_item_label: "Port"
     type: number
     sql: ${TABLE}.dstPort ;;
+    value_format_name: id
+  }
+
+  dimension: dest_full_tcp {
+    group_label: "Destination"
+    label: "Destination Full TCP"
+    group_item_label: "Full TCP"
+    type: string
+    sql: CONCAT(${src_ip},':',${src_port::string}) ;;
     value_format_name: id
   }
 
@@ -59,15 +72,28 @@ view: netflow_log_raw_data {
   }
 
   dimension: src_ip {
+    group_label: "Source"
     label: "Source IP"
+    group_item_label: "IP"
     type: string
     sql: ${TABLE}.srcIP ;;
   }
 
   dimension: src_port {
+    group_label: "Source"
     label: "Source Port"
+    group_item_label: "Port"
     type: number
     sql: ${TABLE}.srcPort ;;
+    value_format_name: id
+  }
+
+  dimension: src_full_tcp {
+    group_label: "Source"
+    label: "Source Full TCP"
+    group_item_label: "Full TCP"
+    type: string
+    sql: CONCAT(${src_ip},':',${src_port::string}) ;;
     value_format_name: id
   }
 
@@ -146,12 +172,26 @@ view: netflow_log_raw_data {
   }
 
   measure: count_source_ips {
+    group_label: "Source"
     type: count_distinct
     sql: ${src_ip} ;;
     drill_fields: [partition_time, geo_country, src_ip, src_port, dst_ip, dst_port, bytes_transferred]
   }
 
   measure: count_dest_ips {
+    type: count_distinct
+    sql: ${dst_ip} ;;
+    drill_fields: [partition_time, geo_country, src_ip, src_port, dst_ip, dst_port, bytes_transferred]
+  }
+
+  measure: count_source_full_tcp {
+    group_label: "Source"
+    type: count_distinct
+    sql: ${src_full_tcp} ;;
+    drill_fields: [partition_time, geo_country, src_ip, src_port, dst_ip, dst_port, bytes_transferred]
+  }
+
+  measure: count_dest_full_tcp {
     type: count_distinct
     sql: ${dst_ip} ;;
     drill_fields: [partition_time, geo_country, src_ip, src_port, dst_ip, dst_port, bytes_transferred]
