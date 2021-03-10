@@ -28,9 +28,9 @@ view: outlier_data {
     # arbitrary threshold, but in reality this
     # would be based off of STDDEV
     html:  {% if value == 'No' %}
-    <p style="color: white; background-color: green; font-size:100%; text-align:center">{{ value }}</p>
+    <p style="color: white; border-radius: 2px; padding: 3px 4px; display: inline-block; font-size: 11px; font-weight: bold; line-height: 1; text-align: center; background-color: #00B345; font-size:100%;">{{ value }}</p>
     {% else %}
-     <p style="color: white; background-color: red; font-size:100%; text-align:center">Duration</p>
+     <p style="color: white; border-radius: 2px; padding: 3px 4px; display: inline-block; font-size: 11px; font-weight: bold; line-height: 1; text-align: center; background-color: #CB1F47; font-size:100%;">Duration</p>
     {% endif %};;
   }
 
@@ -62,9 +62,9 @@ view: outlier_data {
     # arbitrary threshold, but in reality this
     # would be based off of STDDEV
     html:  {% if value == 'No' %}
-          <div style="color: white; background-color: green; font-size:100%; text-align:center">{{ value }}</div>
+          <div style="color: white; border-radius: 2px; padding: 3px 4px; display: inline-block; font-size: 11px; font-weight: bold; line-height: 1; text-align: center; background-color: #00B345; font-size:100%;">{{ value }}</div>
           {% else %}
-           <div style="color: white; background-color: red; font-size:100%; text-align:center">Bytes Rx</div>
+           <div style="color: white; border-radius: 2px; padding: 3px 4px; display: inline-block; font-size: 11px; font-weight: bold; line-height: 1; text-align: center; background-color: #CB1F47; font-size:100%;">Bytes Rx</div>
           {% endif %};;
   }
 
@@ -97,9 +97,9 @@ view: outlier_data {
     # arbitrary threshold, but in reality this
     # would be based off of STDDEV
     html:  {% if value == 'No' %}
-    <div style="color: white; background-color: green; font-size:100%; text-align:center">{{ value }}</div>
+    <div style="color: white; border-radius: 2px; padding: 3px 4px; display: inline-block; font-size: 11px; font-weight: bold; line-height: 1; text-align: center; background-color: #00B345; font-size:100%;">{{ value }}</div>
     {% else %}
-    <div style="color: white; background-color: red; font-size:100%; text-align:center">Bytes Tx</div>
+    <div style="color: white; border-radius: 2px; padding: 3px 4px; display: inline-block; font-size: 11px; font-weight: bold; line-height: 1; text-align: center; background-color: #CB1F47; font-size:100%;">Bytes Tx</div>
     {% endif %};;
   }
 
