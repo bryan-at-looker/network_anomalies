@@ -55,6 +55,6 @@ datagroup: static {
 persist_with: static
 
 datagroup: real_time {
-  # sql_trigger: SELECT MAX(id) FROM etl_log;;
-  max_cache_age: "8 hours"
+  sql_trigger: SELECT count(1) FROM netflow_log_data;;
+  max_cache_age: "0 minutes"
 }
