@@ -351,6 +351,6 @@ view: netflow_log_raw_data {
   }
 
   set: detail {
-    fields: [ partition_time, geo_country, src_ip, src_port, dst_ip, dst_port, bytes_transferred]
+    fields: [ start_time_time, geo_country, src_ip, src_port, dst_ip, dst_port, bytes_transferred]
   }
 }
