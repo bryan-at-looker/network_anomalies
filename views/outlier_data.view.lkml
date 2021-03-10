@@ -273,6 +273,21 @@ dimension: source_country {
     description: "Various actions you can take on anomalies"
     sql: "Actions..." ;;
     action: {
+      label: "Create ServiceNow Incident"
+      icon_url: "https://www.google.com/s2/favicons?domain=www.servicenow.com"
+      url: "https://36eb5f27-30ab-4245-a28b-b08945733c96.trayapp.io"
+      form_param: {
+        name: "Message"
+        type: textarea
+        default: "Hey,
+        Could you check out this anomaly. It occurred at {{ transaction_time_second._rendered_value | date: \"%T\" }} on {{ transaction_time_second._rendered_value | date: \"%b %d, %Y\" }}.
+        Subnet: {{ dst_subnet._value }}
+        Received Bytes: {{ outlier_data.avg_rx_bytes._rendered_value }}  vs. Average Received Bytes for Cluster: {{ normalized_centroid_data.avg_rx_bytes._rendered_value }}
+        Sent Bytes: {{ outlier_data.avg_tx_bytes._rendered_value }} vs. Average Sent Bytes for Cluster: {{ normalized_centroid_data.avg_tx_bytes._rendered_value }}
+        "
+      }
+    }
+    action: {
       label: "Create Jira Ticket"
       icon_url: "https://cdn.worldvectorlogo.com/logos/jira-1.svg"
       url: "https://36eb5f27-30ab-4245-a28b-b08945733c96.trayapp.io"
