@@ -208,6 +208,148 @@ view: netflow_log_raw_data {
     drill_fields: [detail*]
   }
 
+  measure: average_bytes_received {
+    group_label: "Bytes Received"
+    type: average
+    sql: ${bytes_received} ;;
+    value_format_name: decimal_2
+  }
+  measure: median_bytes_received {
+    group_label: "Bytes Received"
+    type: median
+    sql: ${bytes_received} ;;
+    value_format_name: decimal_2
+  }
+  measure: sum_bytes_received {
+    group_label: "Bytes Received"
+    type: sum
+    sql: ${bytes_received} ;;
+    value_format_name: decimal_2
+  }
+  measure: p95_bytes_received {
+    group_label: "Bytes Received"
+    type: percentile
+    percentile: 95
+    sql: ${bytes_received} ;;
+    value_format_name: decimal_2
+  }
+
+  measure: p80_bytes_received {
+    group_label: "Bytes Received"
+    type: percentile
+    percentile: 80
+    sql: ${bytes_received} ;;
+    value_format_name: decimal_2
+  }
+
+  measure: p70_bytes_received {
+    group_label: "Bytes Received"
+    type: percentile
+    percentile: 70
+    sql: ${bytes_received} ;;
+    value_format_name: decimal_2
+  }
+
+  measure: p20_bytes_received {
+    group_label: "Bytes Received"
+    type: percentile
+    percentile: 20
+    sql: ${bytes_received} ;;
+    value_format_name: decimal_2
+  }
+
+  measure: p30_bytes_received {
+    group_label: "Bytes Received"
+    type: percentile
+    percentile: 30
+    sql: ${bytes_received} ;;
+    value_format_name: decimal_2
+  }
+
+  measure: min_bytes_received {
+    group_label: "Bytes Received"
+    type: min
+    sql: ${bytes_received} ;;
+    value_format_name: decimal_2
+  }
+  measure: max_bytes_received {
+    group_label: "Bytes Received"
+    type: max
+    sql: ${bytes_received} ;;
+    value_format_name: decimal_2
+  }
+
+  measure: average_bytes_transfered {
+    group_label: "Bytes Transfered"
+    type: average
+    sql: ${bytes_transferred} ;;
+    value_format_name: decimal_2
+  }
+  measure: median_bytes_transfered {
+    group_label: "Bytes Transfered"
+    type: median
+    sql: ${bytes_transferred} ;;
+    value_format_name: decimal_2
+  }
+  measure: sum_bytes_transfered {
+    group_label: "Bytes Transfered"
+    type: sum
+    sql: ${bytes_transferred} ;;
+    value_format_name: decimal_2
+  }
+  measure: p95_bytes_transfered {
+    group_label: "Bytes Transfered"
+    type: percentile
+    percentile: 95
+    sql: ${bytes_transferred} ;;
+    value_format_name: decimal_2
+  }
+
+  measure: p80_bytes_transfered {
+    group_label: "Bytes Transfered"
+    type: percentile
+    percentile: 80
+    sql: ${bytes_transferred} ;;
+    value_format_name: decimal_2
+  }
+
+  measure: p70_bytes_transfered {
+    group_label: "Bytes Transfered"
+    type: percentile
+    percentile: 70
+    sql: ${bytes_transferred} ;;
+    value_format_name: decimal_2
+  }
+
+  measure: p20_bytes_transfered {
+    group_label: "Bytes Transfered"
+    type: percentile
+    percentile: 20
+    sql: ${bytes_transferred} ;;
+    value_format_name: decimal_2
+  }
+
+  measure: p30_bytes_transfered {
+    group_label: "Bytes Transfered"
+    type: percentile
+    percentile: 30
+    sql: ${bytes_transferred} ;;
+    value_format_name: decimal_2
+  }
+
+  measure: min_bytes_transfered {
+    group_label: "Bytes Transfered"
+    type: min
+    sql: ${bytes_transferred} ;;
+    value_format_name: decimal_2
+  }
+  measure: max_bytes_transfered {
+    group_label: "Bytes Transfered"
+    type: max
+    sql: ${bytes_transferred} ;;
+    value_format_name: decimal_2
+  }
+
   set: detail {
     fields: [ partition_time, geo_country, src_ip, src_port, dst_ip, dst_port, bytes_transferred]
   }
