@@ -43,7 +43,7 @@ view: netflow_log_raw_data {
     label: "Destination Full TCP"
     group_item_label: "Full TCP"
     type: string
-    sql: CONCAT(${src_ip},':',${src_port::string}) ;;
+    sql: CONCAT(${dst_ip},':',${dst_port::string}) ;;
     value_format_name: id
   }
 
@@ -168,32 +168,47 @@ view: netflow_log_raw_data {
   measure: count {
     label: "Event Count"
     type: count
-    drill_fields: [partition_time, geo_country, src_ip, src_port, dst_ip, dst_port, bytes_transferred]
+    drill_fields: [detail*]
   }
 
   measure: count_source_ips {
     group_label: "Source"
+    group_item_label: "Count IP"
+    label: "Source Count IP"
     type: count_distinct
     sql: ${src_ip} ;;
-    drill_fields: [partition_time, geo_country, src_ip, src_port, dst_ip, dst_port, bytes_transferred]
-  }
-
-  measure: count_dest_ips {
-    type: count_distinct
-    sql: ${dst_ip} ;;
-    drill_fields: [partition_time, geo_country, src_ip, src_port, dst_ip, dst_port, bytes_transferred]
+    drill_fields: [detail*]
   }
 
   measure: count_source_full_tcp {
     group_label: "Source"
+    group_item_label: "Count Full TCP"
+    label: "Source Count Full TCP"
     type: count_distinct
     sql: ${src_full_tcp} ;;
-    drill_fields: [partition_time, geo_country, src_ip, src_port, dst_ip, dst_port, bytes_transferred]
+    drill_fields: [detail*]
   }
 
-  measure: count_dest_full_tcp {
+  measure: count_dest_ips {
+    group_label: "Destination"
+    group_item_label: "Count IP"
+    label: "Count Destination IP"
     type: count_distinct
     sql: ${dst_ip} ;;
-    drill_fields: [partition_time, geo_country, src_ip, src_port, dst_ip, dst_port, bytes_transferred]
+    drill_fields: [detail*]
+  }
+
+
+  measure: count_dest_full_tcp {
+    group_label: "Destination"
+    group_item_label: "Count Full TCP"
+    label: "Destination Count Full TCP"
+    type: count_distinct
+    sql: ${dst_ip} ;;
+    drill_fields: [detail*]
+  }
+
+  set: detail {
+    fields: [ partition_time, geo_country, src_ip, src_port, dst_ip, dst_port, bytes_transferred]
   }
 }
